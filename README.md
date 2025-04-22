@@ -1,54 +1,48 @@
-# Nomad Livestock Simulation
+# Лаборатори ажил 12
 
-OOP зарчмуудыг ашиглан Монголын нүүдэлчин айлын мал аж ахуйн менежментийн Java загварчлал.
+- Семинар 4-3
+- B241910014 Б. Намуунаа
 
-## Object oriented programming - lab 4-3
+# ArrayIntQueue Дахь Алдааны Засварын Тайлан
 
-B241910014 Namuunaa.B
+## Илрүүлсэн Алдаанууд
 
-## Features
+### 1. isEmpty() Функцийн Алдаа
 
-- **Abstract Class (`Livestock`):** Base class for all animals.
-- **Interface (`WorkRole`):** Defines specific tasks for working animals.
-- **Classes (`Horse`, `Sheep`, `Camel`, `Goat`):** Implement different animal behaviors.
-- **Polymorphism:** Manages diverse animals uniformly.
-- **Herd Class:** Simulates daily routines.
+**Алдааны тодорхойлолт:** `isEmpty()` функц нь `size >= 0` гэж буцааж байсан нь үргэлж `true` утга буцаахад хүргэж байв. Энэ нь дараагийн тестүүдийг амжилттай гүйцэтгэхэд саад болж байсан.
 
-## Code Structure
+**Засвар:** Функцийг `return size == 0;` гэж өөрчилсөн нь дараах тестүүдийг амжилттай гүйцэтгэх боломжийг олгосон.
 
-- **`Livestock` (Abstract Class):**
-    - Defines `name`, `age`, `makeSound()`, and `graze()`.
-- **`WorkRole` (Interface):**
-    - Defines `performTask()`.
-- **Animal Classes (`Horse`, `Sheep`, `Camel`, `Goat`):**
-    - Extend `Livestock`, implement `WorkRole` (if applicable).
-    - Override `makeSound()` and `performTask()`.
-- **`Herd` Class:**
-    - Manages `ArrayList<Livestock>`.
-    - Implements `addLivestock()` and `dailyRoutine()`.
+### 2. peek() Функцийн Алдаа
 
-## How to Run
+**Алдааны тодорхойлолт:** `peek()` функц нь хоосон дараалал дээр дуудагдах үед `null` буцаахын оронд 0 утга буцааж байсан.
 
-1.  Clone the repo.
-2.  Open in a Java IDE.
-3.  Run `NomadLivestockDemo.java`.
+**Засвар:** Хэрэв дараалал хоосон бол `null` утга буцаах нөхцөл шалгалт нэмсэн:
 
-## Key Concepts
+```java
+if (isEmpty()) {
+    return null;
+}
+```
 
-- Abstraction, Inheritance, Interfaces
-- Polymorphism
-- Method Overriding & Overloading
+### 3. ensureCapacity() Функцийн Алдаа
 
-## Example Output
+**Алдааны тодорхойлолт:** Дарааллын хэмжээ нэмэгдэх үед массивын элементүүдийг шинэ массивт хуулах үйл явц буруу хийгдэж байсан, ялангуяа `head` эхэн дээр биш үед.
 
-- Баян: Янцгаана!
-- Морь талбайд уналгад хэрэглэгдэнэ.
-- Баян талбайд бэлчинэ.
-- Чулуун: Маа!
-- Чулуун талбайд бэлчинэ.
-- Тэмүр: Буйлна!
-- Тэмээ говийн тээвэрт хэрэглэгдэнэ.
-- Тэмүр талбайд бэлчинэ.
-- Сүхбаатар: Мээ!
-- Ямаа уулын замд ачаа тээвэрлэнэ.
-- Сүхбаатар талбайд бэлчинэ.
+**Засвар:** Массив хуулах алгоритмыг дараах байдлаар сайжруулан өөрчилсөн:
+
+```java
+for (int i = 0; i < size; i++) {
+    newData[i] = elementData[(head + i) % oldCapacity];
+}
+```
+
+## Нэмэлт Тестүүд
+
+Дараах нэмэлт тестүүдийг бид бичсэн:
+
+1. `testClear()` - Дараалалыг цэвэрлэх функцийг шалгах
+2. `testEnsureCapacity()` - Дараалалын хэмжээ нэмэгдэх үеийн үйл ажиллагааг шалгах
+3. `testWrappingQueue()` - Дараалал массивын төгсгөлөөс эргэхэд ажиллагааг шалгах
+
+Эдгээр засвар, тестүүдийн ачаар ArrayIntQueue классын бүх функцүүд зөв ажиллаж байна.
